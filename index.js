@@ -15,13 +15,15 @@ function clickBtnCalcular() {
 
     txtAltura = document.getElementById('txtAltura')
     altura = txtAltura.value
+
 //Función de bucle//
     do {
         nombre = prompt("¿Podrías escribir tu nombre?")
-    } while (!isNaN(nombre) || "")
+    } while (!isNaN(nombre) || "") 
+    
 //Función de calculadora//
     imc = peso / (altura * altura)
-    alert(nombre + " el IMC es: " + Math.round(imc))
+    alert(nombre + " tú IMC es: " + Math.round(imc))
 }
 
 //Función de botón//
