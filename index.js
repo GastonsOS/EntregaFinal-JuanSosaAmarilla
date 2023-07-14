@@ -8,7 +8,16 @@ let altura = 0
 let imc = 0
 let btnCalcular = 0
 
+//Bucle//
+
+do {
+    nombre = prompt("¿Podrías escribir tu nombre?")
+    
+} while (!isNaN(nombre) || "")
+alert("Bienvenido" + nombre)
+
 //Función de peso y altura//
+
 function clickBtnCalcular() {
     txtPeso = document.getElementById('txtPeso')
     peso = txtPeso.value
@@ -16,14 +25,19 @@ function clickBtnCalcular() {
     txtAltura = document.getElementById('txtAltura')
     altura = txtAltura.value
 
-//Función de bucle//
-    do {
-        nombre = prompt("¿Podrías escribir tu nombre?")
-    } while (!isNaN(nombre) || "") 
-    
-//Función de calculadora//
-    imc = peso / (altura * altura)
-    alert(nombre + " tú IMC es: " + Math.round(imc))
+//Calculadora//
+imc = peso / (altura * altura)
+alert(nombre + " tú IMC es: " + Math.round(imc))
+}
+
+let edad = prompt("Ingresa tú edad");
+
+if(edad == "") {
+alert("No ingresaste ninguna edad.")
+}
+
+else {
+    alert("Edad Ingresada" + edad)
 }
 
 //Función de botón//
