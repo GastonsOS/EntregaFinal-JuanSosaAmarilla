@@ -14,7 +14,7 @@ do {
     nombre = prompt("¿Podrías escribir tu nombre?")
     
 } while (!isNaN(nombre) || "")
-alert("Bienvenido" + nombre)
+    alert("Bienvenido " + nombre)
 
 //Función de peso y altura//
 
@@ -27,13 +27,13 @@ function clickBtnCalcular() {
 
 //Calculadora//
 imc = peso / (altura * altura)
-alert(nombre + " tú IMC es: " + Math.round(imc))
+    alert(nombre + " tú IMC es: " + Math.round(imc))
 }
 
 let edad = prompt("Ingresa tú edad");
 
 if(edad == "") {
-alert("No ingresaste ninguna edad.")
+    alert("No ingresaste ninguna edad.")
 }
 
 else {
