@@ -28,6 +28,7 @@ function clickBtnCalcular() {
 //Calculadora//
 imc = peso / (altura * altura)
     alert(nombre + " tú IMC es: " + Math.round(imc))
+
 }
 
 let edad = prompt("Ingresa tú edad");
@@ -47,3 +48,25 @@ function iniciar() {
 }
 
 window.onload = iniciar
+
+class Persona {
+    contructor (nombre, edad, peso, altura) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.peso = peso;
+        this.altura = altura;
+    }
+
+hablar () {
+    console.log("HOLA" + this.nombre) ;
+}
+
+}
+
+//Variables 
+
+const datos = {
+    ctxtPeso : document.getElementById('txtPeso') ,
+    ctxtAltura : document.getElementById('txtAltura') ,
+    cbtnCalcular : document.getElementById("btnCalcular")
+}
