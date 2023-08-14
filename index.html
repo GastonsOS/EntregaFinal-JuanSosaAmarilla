@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PreEntrega1</title>
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+
 
     <h1>Calculadora de IMC</h1>
-
-    </header>
-    <main> </main>
-    <footer>
+    <div class="calculador">
+        <label for="Peso">Peso (kg):</label>
+        <input type="number" id="peso" step="0.01" required>
         
-    </footer>
-
+        <label for="Altura">Altura (m):</label>
+        <input type="number" id="altura" step="0.01" required>
+        
+        <button id="calcular">Calcular IMC</button>
+        
+        <div id="resultado"></div>
+    </div>
     <script src="index.js"></script>
+
+
 </body>
 </html>
 

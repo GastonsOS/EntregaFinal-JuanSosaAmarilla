@@ -1,58 +1,57 @@
-class Persona {
-    constructor(nombre, edad, peso, altura, imc) {
-    this.nombre = nombre;
-    this.edad = edad;
-    this.peso = peso;
-    this.altura = altura;
-    this.imc = imc;
+const imcCategories = [
+    { category: 'Bajo peso', range: [0, 18.4] },
+    { category: 'Normal', range: [18.5, 24.9] },
+    { category: 'Sobrepeso', range: [25, 29.9] },
+    { category: 'Obesidad grado 1', range: [30, 34.9] },
+    { category: 'Obesidad grado 2', range: [35, 39.9] },
+    { category: 'Obesidad grado 3', range: [40, Infinity] }
+];
+
+// Función para calcular el IMC
+function calcularIMC(Peso, altura) {
+    const imc = Peso / (altura * altura);
+    return imc;
+}
+
+// Función para obtener la categoría de IMC
+function getCategory(imc) {
+    for (const category of imcCategories) {
+        if (imc >= category.range[0] && imc <= category.range[1]) {
+            return category.category;
+        }
     }
 }
 
-let datosPersonasIngreso = [];
-console.log(Persona)
-
-  //==============Variables=================//
-let nombre;
-let txtPeso;
-let txtAltura;
-
-let peso = 0;
-let altura = 0;
-let imc = 0;
-let btnCalcular = 0;
-
-  //Bucle//
-
-do {
-    nombre = prompt("¿Podrías escribir tu nombre?");
-
-    //aca escribi toda la logica de carga de datos
-
-    if (nombre !== "ESC") {
-    alert("Bienvenido " + nombre);
-
-    let edad = prompt("Ingresa tú edad");
-    if (edad === "") {
-        alert("No ingresaste ninguna edad.");
-    } else {
-        alert("Edad Ingresada: " + edad);
-    }
-
-    peso = parseFloat(prompt("Ingresa tú peso"));
-
-    altura = parseFloat(prompt("Ingresa tú altura"));
-
-    imc = peso / (altura * altura);
-    alert(nombre + " tú IMC es: " + Math.round(imc));
+document.addEventListener('DOMContentLoaded', () => {
+    const calcularButton = document.getElementById('calcular');
+    const resultadoDiv = document.getElementById('resultado');
     
-    let persona = new Persona(nombre, edad, peso, altura, imc);
-    datosPersonasIngreso.push(persona);
+    calcularButton.addEventListener('click', () => {
+        const peso = parseFloat(document.getElementById('peso').value);
+        const altura = parseFloat(document.getElementById('altura').value);
+        
+        if (!isNaN(peso) && !isNaN(altura) && altura > 0) {
+            const imc = calcularIMC(peso, altura);
+            const category = getCategory(imc);
+            
+            resultadoDiv.innerHTML = `Tu IMC es: ${imc.toFixed(2)} (${category})`;
+        } else {
+            resultadoDiv.innerHTML = 'Por favor ingresa valores válidos.';
+        }
+    });
+});
+
+// Cargar resultados anteriores desde el almacenamiento local
+const prevResultados = JSON.parse(localStorage.getItem('imcResultados')) || [];
+if (prevResultados.length > 0) {
+    const prevResultadosDiv = document.createElement('div');
+    prevResultadosDiv.innerHTML = '<h2>Resultados Anteriores:</h2>';
+    for (const resultado of prevResultados) {
+        prevResultadosDiv.innerHTML += `
+            <p>
+                Peso: ${resultado.peso} kg, Altura: ${resultado.altura} m,
+                IMC: ${resultado.imc.toFixed(2)}, Categoría: ${resultado.category}
+            </p>`;
+    }
+    document.body.appendChild(prevResultadosDiv);
 }
-
-} while (nombre !== "ESC");
-
-console.log(datosPersonasIngreso);
-
-datosPersonasIngreso.filter (persona =>{
-    console.log(persona.nombre);
-})
