@@ -22,25 +22,6 @@ function getCategory(imc) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const calcularButton = document.getElementById('calcular');
-    const resultadoDiv = document.getElementById('resultado');
-    
-    calcularButton.addEventListener('click', () => {
-        const peso = parseFloat(document.getElementById('peso').value);
-        const altura = parseFloat(document.getElementById('altura').value);
-        
-        if (!isNaN(peso) && !isNaN(altura) && altura > 0) {
-            const imc = calcularIMC(peso, altura);
-            const category = getCategory(imc);
-            
-            resultadoDiv.innerHTML = `Tu IMC es: ${imc.toFixed(2)} (${category})`;
-        } else {
-            resultadoDiv.innerHTML = 'Por favor ingresa valores válidos.';
-        }
-    });
-});
-
 // Cargar resultados anteriores desde el almacenamiento local
 const prevResultados = JSON.parse(localStorage.getItem('imcResultados')) || [];
 if (prevResultados.length > 0) {
@@ -55,3 +36,33 @@ if (prevResultados.length > 0) {
     }
     document.body.appendChild(prevResultadosDiv);
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const calcularButton = document.getElementById('calcular');
+    const resultadoDiv = document.getElementById('resultado');
+    
+    calcularButton.addEventListener('click', () => {
+        const peso = parseFloat(document.getElementById('peso').value);
+        const altura = parseFloat(document.getElementById('altura').value);
+        
+        if (!isNaN(peso) && !isNaN(altura) && altura > 0) {
+            const imc = calcularIMC(peso, altura);
+            const category = getCategory(imc);
+
+
+            
+            resultadoDiv.innerHTML = `Tu IMC es: ${imc.toFixed(2)} (${category})`;
+            prevResultados.push({
+                peso: peso,
+                altura: altura, 
+                category,
+                imc: imc,
+            })
+            localStorage.setItem ('imcResultados', JSON.stringify(prevResultados))
+        } else {
+            resultadoDiv.innerHTML = 'Por favor ingresa valores válidos.';
+        }
+    });
+});
+
